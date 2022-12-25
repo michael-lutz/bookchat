@@ -127,3 +127,7 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+# Files related to speech / ASR
+google_speech_key.json
+interim_file.mp3
