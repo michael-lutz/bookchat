@@ -57,7 +57,7 @@ class ChatAssist:
         #labeling = "After each text you should label"
         for i in range(len(docs)):
             new_content = docs[i]["title"] + ":\n" + docs[i]["summarizedContent"] + "\n"
-            if len(new_content) + len(prompt) + len(prompt_end) + len(convo) > self.MAX_CHARS:
+            if len(new_content) + len(prompt) + len(prompt_end) + len(convo) + 8 > self.MAX_CHARS:
                  break
             prompt += new_content
         final_prompt = prompt  + prompt_end + convo + "[agent]:"
