@@ -53,13 +53,15 @@ class ChatAssist:
         convo = self._compile_convo()
 
         prompt = ""
-        prompt_end = "You are a chatbot customer support agent for a company and should continue the conversation in a cordial and professional manner using the information provided above to guide your responses.\n"
+        prompt_end = "You are a chatbot customer support agent for a company and should continue the conversation in a cordial and professional manner using the information provided above alone to guide your responses. If you don't know the answer or the information is not provided above, refer the customer to 800-403-8023. Do not go off-topic or talk about irrelevant things--you are a customer service chatbot\n"
+        #labeling = "After each text you should label"
         for i in range(len(docs)):
             new_content = docs[i]["title"] + ":\n" + docs[i]["summarizedContent"] + "\n"
             if len(new_content) + len(prompt) + len(prompt_end) + len(convo) > self.MAX_CHARS:
                  break
             prompt += new_content
         final_prompt = prompt  + prompt_end + convo + "[agent]:"
+        print(final_prompt)
 
         response = openai.Completion.create(
           model="text-davinci-003",
